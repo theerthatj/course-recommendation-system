@@ -25,13 +25,13 @@ learner's profile, and returns a ranked list of the most relevant courses.
 
 ## Project Pipeline
 
-1. **Data Loading & Standardization** — load the four platform CSVs and map each
+1. **Data Loading & Standardization** - load the four platform CSVs and map each
    to a common schema (`course`, `skills`, `rating`, `reviewcount`, `level`,
    `partner`, `duration`, `platform`).
-2. **Sampling & Cleaning** — combine into a single `master_df`, sample down to
+2. **Sampling & Cleaning** - combine into a single `master_df`, sample down to
    2,000 rows, and fill missing values (skills, level, partner, duration,
    rating, review count).
-3. **Feature Engineering** — build a combined `features` text field
+3. **Feature Engineering** - build a combined `features` text field
    (course + skills + level + partner + platform) and compute normalized
    `rating_score` and `popularity_score` columns.
 4. **Content-Based Modeling**
@@ -40,9 +40,9 @@ learner's profile, and returns a ranked list of the most relevant courses.
    - A K-Nearest Neighbors model (cosine distance) over the TF-IDF matrix as an
      alternative retrieval method
 5. **Recommendation Functions** (see below)
-6. **Exploratory Data Analysis** — distribution plots for platform, course
+6. **Exploratory Data Analysis** - distribution plots for platform, course
    level, and rating, plus average rating by platform.
-7. **Evaluation** — proxy Precision/Recall/F1/MAP/NDCG@K and a Precision@K curve.
+7. **Evaluation** - proxy Precision/Recall/F1/MAP/NDCG@K and a Precision@K curve.
 
 ---
 
@@ -53,7 +53,7 @@ learner's profile, and returns a ranked list of the most relevant courses.
 | `recommend_courses(course_name, top_n=5)` | Finds courses similar to a given course/title using TF-IDF cosine similarity, blended with rating and popularity (`0.7 × similarity + 0.2 × rating_score + 0.1 × popularity_score`). |
 | `recommend_courses_knn(skill_query, top_n=5)` | Returns the nearest courses to a free-text skill/topic query using the KNN model over the TF-IDF space. |
 | `recommend_for_learner(skills, interests=None, level=None, top_n=10)` | Builds a learner profile from a list of skills/interests, optionally filters by course level, and returns the top matching courses ranked by similarity + rating + popularity. |
-| `generate_learning_path(topic, top_n_per_level=2)` | Generates a sequenced learning path for a topic — top courses at Beginner, then Intermediate, then Advanced level — to support progressive skill-building. |
+| `generate_learning_path(topic, top_n_per_level=2)` | Generates a sequenced learning path for a topic - top courses at Beginner, then Intermediate, then Advanced level - to support progressive skill-building. |
 
 ---
 
@@ -74,7 +74,7 @@ A Precision@K curve (K = 5, 10, 15, 20, 25, 30) is also plotted to show how
 recommendation quality changes as the list length grows.
 
 > **Important caveat:** Since the dataset has no real user-interaction or
-> feedback data, "relevant" courses are defined as a proxy — courses that
+> feedback data, "relevant" courses are defined as a proxy - courses that
 > share at least 2 overlapping skill keywords with the query course's own
 > TF-IDF features. These metrics are a **self-consistency check on the
 > similarity ranking**, not a validation against real learner behavior. They
@@ -99,14 +99,14 @@ The notebook includes the following visualizations:
 
 All generated artifacts are written to `../outputs/`:
 
-- `evaluation_results_per_course.csv` — per-course evaluation metrics
-- `evaluation_summary.csv` — averaged evaluation metrics
-- `metric_comparison.png` — bar chart of evaluation metrics
-- `precision_at_k_curve.png` — Precision@K curve
-- `cybersecurity_recommendations.csv` — example output of `recommend_courses`
-- `python_knn_recommendations.csv` — example output of `recommend_courses_knn`
-- `recommend_for_learner_output.csv` — example learner-profile recommendation
-- `ml_learning_path.csv` — example generated learning path for "Machine Learning"
+- `evaluation_results_per_course.csv` - per-course evaluation metrics
+- `evaluation_summary.csv` - averaged evaluation metrics
+- `metric_comparison.png` - bar chart of evaluation metrics
+- `precision_at_k_curve.png` - Precision@K curve
+- `cybersecurity_recommendations.csv` - example output of `recommend_courses`
+- `python_knn_recommendations.csv` - example output of `recommend_courses_knn`
+- `recommend_for_learner_output.csv` - example learner-profile recommendation
+- `ml_learning_path.csv` - example generated learning path for "Machine Learning"
 
 ---
 
@@ -154,8 +154,8 @@ generate_learning_path("Machine Learning")
 
 ## Limitations & Future Work
 
-- **No collaborative filtering:** The dataset contains course metadata only —
-  no user-level interaction/rating history — so the system is purely
+- **No collaborative filtering:** The dataset contains course metadata only -
+  no user-level interaction/rating history - so the system is purely
   content-based. A collaborative or hybrid approach would require either real
   user interaction logs or simulated interaction data.
 - **Proxy evaluation:** As noted above, evaluation metrics use a skill-overlap
