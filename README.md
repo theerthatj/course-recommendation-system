@@ -15,7 +15,7 @@ learner's profile, and returns a ranked list of the most relevant courses.
 
 ## Dataset
 
-- **Source:** [Online Courses Across Platforms Dataset](https://www.kaggle.com) (Kaggle)
+- **Source:** [Multi-Platform Online Courses Dataset](https://www.kaggle.com/datasets/everydaycodings/multi-platform-online-courses-dataset) (Kaggle)
 - **Platforms covered:** Coursera, Udemy, edX, Skillshare
 - **Raw combined size:** 42,461 courses across all four platforms
 - **Working sample:** 2,000 courses (500 Coursera + 700 Udemy + 300 edX + 500 Skillshare, `random_state=42`), used to keep TF-IDF and similarity computations fast
